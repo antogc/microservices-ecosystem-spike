@@ -2,6 +2,7 @@
 This repo holds several projects that compose a spring cloud based micro-service ecosystem. Config server, api-gateway, business services,load balance, distributed tracing and circuit breaker.
 
 System architecture:
+
 ![System architecture](microservice-ecosystem.jpg)
 
 
