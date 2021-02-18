@@ -1,6 +1,7 @@
 package com.agclab.department.service;
 
 import com.agclab.department.entity.Department;
+import com.agclab.department.exception.DepartmentNotFoundException;
 import com.agclab.department.repository.DepartmentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,6 +10,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -48,6 +50,15 @@ class DepartmentServiceTest {
         assertThat(department.getDepartmentAddress()).isEqualTo(DEPARTMENT_ADDRESS);
         assertThat(department.getDepartmentCode()).isEqualTo(DEPARTMENT_CODE);
     }
+
+    @Test
+    void shouldThrowException() {
+        given(departmentRepository.findByDepartmentId(DEPARTMENT_ID)).willReturn(null);
+
+        assertThrows(DepartmentNotFoundException.class,
+                () -> departmentService.findDepartmentById(DEPARTMENT_ID));
+    }
+
 
     private Department aDepartment() {
         return new Department(DEPARTMENT_ID, DEPARTMENT_NAME, DEPARTMENT_ADDRESS, DEPARTMENT_CODE);
