@@ -52,7 +52,6 @@ class DepartmentControllerTest {
                 .andExpect(jsonPath("departmentCode").value(DEPARTMENT_CODE));
     }
 
-
     @Test
     void findDepartmentById() throws Exception {
         given(departmentService.findDepartmentById(anyLong())).willReturn(aDepartment());
