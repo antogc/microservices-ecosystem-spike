@@ -19,9 +19,9 @@ public class DepartmentService {
         return departmentRepository.save(department);
     }
 
-    public Department findDepartmentById(Long departmentId) {
+    public Department findDepartmentById(Long id) {
         log.info("Inside findDepartmentById method of DepartmentController");
-        Department department = departmentRepository.findByDepartmentId(departmentId);
+        Department department = departmentRepository.findByDepartmentId(id);
         if (department == null) {
             throw new DepartmentNotFoundException();
         }

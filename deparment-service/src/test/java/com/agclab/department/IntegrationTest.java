@@ -46,9 +46,9 @@ public class IntegrationTest {
         String getUrl = String.format("http://localhost:%d/departments/%d", randomServerPort, DEPARTMENT_ID);
         ResponseEntity<Department> response = restTemplate.getForEntity(getUrl, Department.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getDepartmentName()).isEqualTo(DEPARTMENT_NAME);
-        assertThat(response.getBody().getDepartmentAddress()).isEqualTo(DEPARTMENT_ADDRESS);
-        assertThat(response.getBody().getDepartmentCode()).isEqualTo(DEPARTMENT_CODE);
+        assertThat(response.getBody().getName()).isEqualTo(DEPARTMENT_NAME);
+        assertThat(response.getBody().getAddress()).isEqualTo(DEPARTMENT_ADDRESS);
+        assertThat(response.getBody().getCode()).isEqualTo(DEPARTMENT_CODE);
     }
 
     private Department aDepartment() {

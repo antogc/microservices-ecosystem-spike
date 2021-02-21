@@ -11,6 +11,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -29,15 +30,13 @@ class DepartmentServiceTest {
 
     @Test
     void saveDepartment() {
-        Department departmentToSave = aDepartment();
-        Department expectedDepartment = aDepartment();
-        given(departmentRepository.save(departmentToSave)).willReturn(expectedDepartment);
+        given(departmentRepository.save(isA(Department.class))).willReturn(aDepartment());
 
-        Department result = departmentService.saveDepartment(departmentToSave);
+        Department result = departmentService.saveDepartment(aDepartment());
 
-        assertThat(result.getDepartmentName()).isEqualTo(DEPARTMENT_NAME);
-        assertThat(result.getDepartmentAddress()).isEqualTo(DEPARTMENT_ADDRESS);
-        assertThat(result.getDepartmentCode()).isEqualTo(DEPARTMENT_CODE);
+        assertThat(result.getName()).isEqualTo(DEPARTMENT_NAME);
+        assertThat(result.getAddress()).isEqualTo(DEPARTMENT_ADDRESS);
+        assertThat(result.getCode()).isEqualTo(DEPARTMENT_CODE);
     }
 
     @Test
@@ -46,9 +45,9 @@ class DepartmentServiceTest {
 
         Department department = departmentService.findDepartmentById(DEPARTMENT_ID);
 
-        assertThat(department.getDepartmentName()).isEqualTo(DEPARTMENT_NAME);
-        assertThat(department.getDepartmentAddress()).isEqualTo(DEPARTMENT_ADDRESS);
-        assertThat(department.getDepartmentCode()).isEqualTo(DEPARTMENT_CODE);
+        assertThat(department.getName()).isEqualTo(DEPARTMENT_NAME);
+        assertThat(department.getAddress()).isEqualTo(DEPARTMENT_ADDRESS);
+        assertThat(department.getCode()).isEqualTo(DEPARTMENT_CODE);
     }
 
     @Test
