@@ -24,11 +24,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findUserById(Long userId) {
-        log.info("Inside findUserById of UserService");
-        return userRepository.findByUserId(userId);
-    }
-
     public ResponseTemplateVO getUserWithDepartment(Long userId) {
         log.info("Inside getUserWithDepartment of UserService");
         User user = userRepository.findByUserId(userId);
