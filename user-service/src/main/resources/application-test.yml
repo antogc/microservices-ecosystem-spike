@@ -3,4 +3,5 @@ spring:
     config:
       enabled: false
 eureka:
-  enabled: false
+  client:
+    enabled: false

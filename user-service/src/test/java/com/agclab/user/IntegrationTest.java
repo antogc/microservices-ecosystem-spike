@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@ActiveProfiles(profiles = {"test"})
+@ActiveProfiles("test")
 public class IntegrationTest {
 
     public static final String USER_NAME = "Antuan";
