@@ -31,7 +31,8 @@ class DepartmentControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @MockBean DepartmentService departmentService;
+    @MockBean
+    DepartmentService departmentService;
 
     @Test
     void saveDepartment() throws Exception {

@@ -1,21 +1,17 @@
 package com.agclab.department;
 
 import com.agclab.department.entity.Department;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.*;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class IntegrationTest {
     private static final Long DEPARTMENT_ID = 1L;
@@ -26,16 +22,12 @@ public class IntegrationTest {
     @LocalServerPort
     int randomServerPort;
 
-    @TestConfiguration
-    static class DepartmentServiceTestConfiguration {
-        @Bean
-        RestTemplate restTemplate() {
-            return new RestTemplate();
-        }
-    }
-
-    @Autowired
     private RestTemplate restTemplate;
+
+    @BeforeEach
+    void setup() {
+        restTemplate = new RestTemplate();
+    }
 
     @Test
     public void integrationTest(){
